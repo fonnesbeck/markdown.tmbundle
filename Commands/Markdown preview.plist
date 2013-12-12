@@ -12,7 +12,7 @@ if [[ -f "$TM_FILEPATH" ]]; then
   echo "&lt;base href='file://${TM_FILEPATH// /%20}'&gt;"
 fi
 
-# Convert to html then make one of the html tags above caret 
+# Convert to html then make one of the html tags above caret
 # into a link that we scroll down to
 "${TM_MARKDOWN:-Markdown.pl}"|"${TM_SMARTYPANTS:-SmartyPants.pl}"|ruby -e '
 lines = STDIN.read.split("\n")
@@ -27,6 +27,20 @@ if n &gt; 0 &amp;&amp; m = lines[n].match(/&lt;(h\d|p|ul|li|blockquote|pre|div|i
 end
 
 puts lines.join("\n")
+puts "<script type=\"text/x-mathjax-config\">
+  MathJax.Hub.Config({
+    extensions: [\"tex2jax.js\"],
+    jax: [\"input/TeX\", \"output/HTML-CSS\"],
+    tex2jax: {
+      inlineMath: [ [\"$\",\"$\"], [\"\\\\(\",\"\\\\)\"] ],
+      displayMath: [ [\"$$\",\"$$\"], [\"\\\\[\",\"\\\\]\"] ],
+      processEscapes: false
+    },
+    \"HTML-CSS\": { availableFonts: [\"TeX\"] }
+  });
+</script>
+<script type=\"text/javascript\"    src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\">
+</script>"
 puts "\n&lt;script&gt;window.location.hash = \"scroll_to_here\";&lt;/script&gt;"
 '
 html_footer</string>
