@@ -27,20 +27,22 @@ if n &gt; 0 &amp;&amp; m = lines[n].match(/&lt;(h\d|p|ul|li|blockquote|pre|div|i
 end
 
 puts lines.join("\n")
-puts "<script type=\"text/x-mathjax-config\">
-  MathJax.Hub.Config({
-    extensions: [\"tex2jax.js\"],
-    jax: [\"input/TeX\", \"output/HTML-CSS\"],
-    tex2jax: {
-      inlineMath: [ [\"$\",\"$\"], [\"\\\\(\",\"\\\\)\"] ],
-      displayMath: [ [\"$$\",\"$$\"], [\"\\\\[\",\"\\\\]\"] ],
-      processEscapes: false
-    },
-    \"HTML-CSS\": { availableFonts: [\"TeX\"] }
-  });
-</script>
-<script type=\"text/javascript\"    src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\">
-</script>"
+if ENV["TM_MARKDOWN_MATHJAX"].to_i > 0
+    puts "<script type=\"text/x-mathjax-config\">
+      MathJax.Hub.Config({
+        extensions: [\"tex2jax.js\"],
+        jax: [\"input/TeX\", \"output/HTML-CSS\"],
+        tex2jax: {
+          inlineMath: [ [\"$\",\"$\"], [\"\\\\(\",\"\\\\)\"] ],
+          displayMath: [ [\"$$\",\"$$\"], [\"\\\\[\",\"\\\\]\"] ],
+          processEscapes: false
+        },
+        \"HTML-CSS\": { availableFonts: [\"TeX\"] }
+      });
+    </script>
+    <script type=\"text/javascript\"    src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\">
+    </script>"
+end
 puts "\n&lt;script&gt;window.location.hash = \"scroll_to_here\";&lt;/script&gt;"
 '
 html_footer</string>
