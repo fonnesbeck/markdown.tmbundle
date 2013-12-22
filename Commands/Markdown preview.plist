@@ -27,8 +27,8 @@ if n &gt; 0 &amp;&amp; m = lines[n].match(/&lt;(h\d|p|ul|li|blockquote|pre|div|i
 end
 
 puts lines.join("\n")
-if ENV["TM_MARKDOWN_MATHJAX"].to_i > 0
-    puts "<script type=\"text/x-mathjax-config\">
+if ENV["TM_MARKDOWN_MATHJAX"].to_i &gt; 0
+    puts "&lt;script type=\"text/x-mathjax-config\"&gt;
       MathJax.Hub.Config({
         extensions: [\"tex2jax.js\"],
         jax: [\"input/TeX\", \"output/HTML-CSS\"],
@@ -39,9 +39,9 @@ if ENV["TM_MARKDOWN_MATHJAX"].to_i > 0
         },
         \"HTML-CSS\": { availableFonts: [\"TeX\"] }
       });
-    </script>
-    <script type=\"text/javascript\"    src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\">
-    </script>"
+    &lt;/script&gt;
+    &lt;script type=\"text/javascript\"    src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\"&gt;
+    &lt;/script&gt;"
 end
 puts "\n&lt;script&gt;window.location.hash = \"scroll_to_here\";&lt;/script&gt;"
 '
